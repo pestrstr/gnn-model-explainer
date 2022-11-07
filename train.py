@@ -514,9 +514,12 @@ def evaluate(dataset, model, args, name="Validation", max_num_examples=None):
 
     labels = np.hstack(labels)
     preds = np.hstack(preds)
+    
+    # Set zero-division = 0 (default value is zero-division = "warn"), to avoid showing warnings
+    # about precision set to 0.0 in labels with no predicted samples.
 
     result = {
-        "prec": metrics.precision_score(labels, preds, average="macro"),
+        "prec": metrics.precision_score(labels, preds, average="macro", zero_division=0),
         "recall": metrics.recall_score(labels, preds, average="macro"),
         "acc": metrics.accuracy_score(labels, preds),
     }

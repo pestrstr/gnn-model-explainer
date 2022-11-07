@@ -1,6 +1,7 @@
 FROM ubuntu
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-FROM python:3.9
+
+RUN apt-get update
+RUN apt-get install python3
 
 RUN python -m venv /opt/venv 
 RUN /opt/venv/bin/python -m pip install --upgrade pip

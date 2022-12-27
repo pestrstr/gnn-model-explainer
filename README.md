@@ -123,3 +123,19 @@ GNN models in the future.
 ## Changelog
 
 See [CHANGELOG.md](#)
+
+## Issues
+
+The fastest way to solve the issue related with
+
+```
+OSError: /path/to/torch/lib/../.. libcublas.so.11: symbol free_gemm_select version libcublasLt.so.11 not defined in file libcublasLt.so.11 with link time reference
+```
+
+is to re-install torch via pip with the following command
+
+```
+pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio===0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+For further info see https://github.com/pytorch/pytorch/issues/51080.

@@ -138,10 +138,10 @@ def gen_syn1(nb_shapes=80, width_basis=300, feature_generator=None, m=5):
     name = basis_type + "_" + str(width_basis) + "_" + str(nb_shapes)
 
     # Save the first 5 generated graphs for testing purposes
-    path = os.path.join("log/syn1_base_h20_o20")
-    writer = SummaryWriter(path)
     for i in range(5):
-        io_utils.log_graph(writer, G[i], "graph/generated_{}".format(i))
+        nx.draw(G[i], with_labels=True, font_weight='bold')
+        plt.close()
+        
     return G, role_id, name
 
 

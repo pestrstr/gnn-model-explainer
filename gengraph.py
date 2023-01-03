@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.colors as colors
+import utils.io_utils as io_utils
 
 # Set matplotlib backend to file writing
 plt.switch_backend("agg")
@@ -135,6 +136,12 @@ def gen_syn1(nb_shapes=80, width_basis=300, feature_generator=None, m=5):
     feature_generator.gen_node_features(G)
 
     name = basis_type + "_" + str(width_basis) + "_" + str(nb_shapes)
+
+    # Save the first 5 generated graphs for testing purposes
+    path = os.path.join("log/syn1_base_h20_o20")
+    writer = SummaryWriter(path)
+    for i in range(5):
+        io_utils.log_graph(writer, G[i], "graph/generated_{}".format(i))
     return G, role_id, name
 
 
